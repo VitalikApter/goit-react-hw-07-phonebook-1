@@ -3,9 +3,9 @@ import css from './PhoneBookForm.module.css';
 import { PropTypes } from 'prop-types';
 import { nanoid } from 'nanoid';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from 'redux/contacts/contactsThunk';
-import { selectContacts } from 'redux/selectors';
-import { toast } from 'react-toastify';
+import { addContact } from 'components/redux/contacts/contactsThunk';
+import { selectContacts } from 'components/redux/selectors';
+import {  toast } from 'react-toastify';
 
 export const PhoneBookForm = () => {
   const [name, setName] = useState('');

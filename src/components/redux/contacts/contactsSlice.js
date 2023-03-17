@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { contactsInitialState } from './contactsInitialState';
-import { fetchContacts } from 'redux/contacts/contactsThunk';
+import { fetchContacts } from './contactsThunk';
 
 const contactsSlice = createSlice({
   name: 'contacts',

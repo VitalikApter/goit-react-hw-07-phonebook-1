@@ -1,10 +1,10 @@
 import { useSelector } from 'react-redux';
-import { selectError } from 'redux/selectors';
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { selectError } from 'components/redux/selectors';
+import {  toast } from 'react-toastify';
+
 import { PhoneApp } from 'components/PhoneApp/PhoneApp';
 
- const App = () => {
+export const App = () => {
   const error = useSelector(selectError);
 
   if (error) {
@@ -13,7 +13,7 @@ import { PhoneApp } from 'components/PhoneApp/PhoneApp';
 
   return (
     <>
-      <ToastContainer
+      {/* <ToastContainer
         position="top-right"
         autoClose={3000}
         hideProgressBar={false}
@@ -24,10 +24,8 @@ import { PhoneApp } from 'components/PhoneApp/PhoneApp';
         draggable
         pauseOnHover
         theme="colored"
-      />
+      /> */}
       <PhoneApp />
     </>
   );
 };
-
-export default App;

@@ -1,7 +1,7 @@
 import { Contact } from './Contact/Contact';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectFilteredContacts, selectIsLoading } from 'redux/selectors';
-import { deleteContact } from 'redux/contacts/contactsThunk';
+import { selectFilteredContacts, selectIsLoading } from 'components/redux/selectors';          
+import { deleteContact } from 'components/redux/contacts/contactsThunk';
 import css from './ContactsList.module.css';
 import Loader from 'components/Loader/Loader';
 
