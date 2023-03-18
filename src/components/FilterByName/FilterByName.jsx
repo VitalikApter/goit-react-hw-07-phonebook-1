@@ -1,4 +1,5 @@
 
+
 import { useDispatch, useSelector } from 'react-redux';
 import { filterChangeAction } from 'components/redux/filter/filterSlice';
 import css from './FilterByName.module.css';
@@ -7,11 +8,6 @@ export const FilterByName = () => {
   const filter = useSelector(state => state.filter);
   const dispatch = useDispatch();
 
-  // const searchContacts = useMemo((searchString) => {
-  //   return debounce(() => {
-  //     dispatch(filterChangeAction(searchString));
-  //   }, 1000);
-  // }, [dispatch]);
 
   const handleFilterChange = evt => {
     dispatch(filterChangeAction(evt.currentTarget.value));

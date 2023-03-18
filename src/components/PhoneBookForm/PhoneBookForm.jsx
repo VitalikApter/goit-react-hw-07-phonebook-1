@@ -1,17 +1,31 @@
 import { useState } from 'react';
 import css from './PhoneBookForm.module.css';
-import { PropTypes } from 'prop-types';
+
 import { nanoid } from 'nanoid';
 import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'components/redux/contacts/contactsThunk';
 import { selectContacts } from 'components/redux/selectors';
-import {  toast } from 'react-toastify';
+
 
 export const PhoneBookForm = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
   const contacts = useSelector(selectContacts);
   const dispatch = useDispatch();
+
+  const isDublicate = (name, number) => {
+    const normalizedName = name.toLowerCase();
+    const normalizedNumber = number.toLowerCase();
+    const contact = contacts.find(({ name, number }) => {
+      return (
+        name.toLowerCase() === normalizedName ||
+        number.toLowerCase() === normalizedNumber
+      );
+    });
+
+    return Boolean(contact);
+  };
+
 
   const handleCanngeInput = ({ currentTarget: { name, value } }) => {
     switch (name) {
@@ -26,18 +40,12 @@ export const PhoneBookForm = () => {
     }
   };
 
-  const isContactInState = ({ name, number }) => {
-    return !!contacts.filter(({ name: prevName, number: prevNumber }) => {
-      return prevName === name && prevNumber === number;
-    }).length;
-  };
-
   const handleFormSubmit = evt => {
     evt.preventDefault();
 
-    if (isContactInState({ name, number })) {
-      toast.info('Contact is in phonebook');
-      return;
+    if (isDublicate(name, number)) {
+      alert(`${name}. number: ${number} is already in contacts.`);
+      return false;
     }
 
     dispatch(addContact({ id: nanoid(), name, number }));
@@ -81,6 +89,3 @@ export const PhoneBookForm = () => {
   );
 };
 
-PhoneBookForm.propTypes = {
-  onSubmit: PropTypes.object,
-};

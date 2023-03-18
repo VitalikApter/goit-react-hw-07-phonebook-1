@@ -10,7 +10,11 @@ const filterNormalize = filter => filter.toLowerCase();
 export const selectFilteredContacts = createSelector(
   [selectContacts, selectFilter],
   (contacts, filter) =>
-    contacts.filter(({ name }) =>
+    contacts.filter(({ name, number }) =>
       name.toLowerCase().includes(filterNormalize(filter))
+    ),
+    (contacts, filter) =>
+    contacts.filter(({  number }) =>
+    number.toLowerCase().includes(filterNormalize(filter))
     )
 );
